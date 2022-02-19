@@ -1,0 +1,9 @@
+version: '2'
+services:
+  go:
+    container_name: minitwit-simulator-api
+    image: minitwit-api
+    build:
+      context: .
+    ports:
+      - "9000:9000"
