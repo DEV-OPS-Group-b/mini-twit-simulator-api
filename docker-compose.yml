@@ -7,3 +7,9 @@ services:
       context: .
     ports:
       - "9000:9000"
+    environment:
+      - BACKEND=spring
+networks:
+  default:
+    external: true
+    name: mini-twit-backend_isolated-network
