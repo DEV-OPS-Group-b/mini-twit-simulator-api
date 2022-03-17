@@ -55,7 +55,7 @@ jobs:
           
   docker-compose:
     needs: build
-    uses: DEV-OPS-Group-b/deployment/.github/workflows/ssh-docker-compose.yml@main
+    uses: DEV-OPS-Group-b/deployment/.github/workflows/docker-compose.yml@main
     secrets:
       HOST: ${{ secrets.VM_HOST }}
       USERNAME: ${{ secrets.VM_USERNAME }}
