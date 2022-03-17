@@ -18,7 +18,6 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -53,4 +52,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
+          
+  docker-compose:
+    needs: build
+    uses: DEV-OPS-Group-b/deployment/.github/workflows/ssh-docker-compose.yml@main
+    secrets:
+      HOST: ${{ secrets.VM_HOST }}
+      USERNAME: ${{ secrets.VM_USERNAME }}
+      KEY: ${{ secrets.VM_KEY }}
+          
