@@ -206,7 +206,7 @@ func msgs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 
 		var data []Message
-		response := requestToBackend("/tweet/get-all-tweets", "GET", nil)
+		response := requestToBackend(fmt.Sprintf("/tweet/get-all-tweets/%v/0", n), "GET", nil)
 		defer response.Body.Close()
 		json.NewDecoder(response.Body).Decode(&data)
 		status := response.StatusCode
