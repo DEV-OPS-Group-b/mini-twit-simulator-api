@@ -23,11 +23,11 @@ var (
 )
 
 type Message struct {
-	id            string
-	username      string
-	insertionDate int64
-	tweet         string
-	flagged       bool
+	Id            string
+	Username      string
+	InsertionDate int64
+	Tweet         string
+	Flagged       bool
 }
 
 func userExists(username string) bool {
@@ -45,7 +45,7 @@ func filterMessages(messages []Message, n int) []byte {
 
 	filteredMessages := []map[string]string{}
 	for _, msg := range messages[:n] {
-		filteredMessages = append(filteredMessages, map[string]string{"content": msg.tweet, "pub_date": fmt.Sprint(msg.insertionDate), "username": msg.username})
+		filteredMessages = append(filteredMessages, map[string]string{"content": msg.Tweet, "pub_date": fmt.Sprint(msg.InsertionDate), "username": msg.Username})
 	}
 	res, err := json.Marshal(filteredMessages)
 	if err != nil {
