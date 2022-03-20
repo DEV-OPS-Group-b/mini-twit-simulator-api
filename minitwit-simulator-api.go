@@ -77,6 +77,7 @@ func checkAuthKey(r *http.Request) []byte {
 	if authKey != "Basic c2ltdWxhdG9yOnN1cGVyX3NhZmUh" {
 		err := "You are not authorized to use this resource!"
 		res, _ := json.Marshal(map[string]interface{}{"status": 403, "error_msg": err})
+		log.Print("unauthorized access attempt")
 		return res
 	}
 	return nil
@@ -252,6 +253,7 @@ func msgsUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		if !userExists(username) {
 			http.Error(w, "", 404)
+			log.Print("msgsUser: User does not exist" + username)
 			return
 		}
 
@@ -326,6 +328,7 @@ func fllws(w http.ResponseWriter, r *http.Request) {
 
 	if !userExists(username) {
 		http.Error(w, "", 404)
+		log.Print("fllws: User does not exist" + username)
 		return
 	}
 
@@ -344,6 +347,7 @@ func fllws(w http.ResponseWriter, r *http.Request) {
 		targetUsername := data["follow"]
 		if !userExists(targetUsername) {
 			http.Error(w, "", 404)
+			log.Print("fllws - follow: Target user does not exist" + targetUsername)
 			return
 		}
 
@@ -373,6 +377,7 @@ func fllws(w http.ResponseWriter, r *http.Request) {
 		targetUsername := data["unfollow"]
 		if !userExists(targetUsername) {
 			http.Error(w, "", 404)
+			log.Print("fllws - unfollow: Target user does not exist" + targetUsername)
 			return
 		}
 
